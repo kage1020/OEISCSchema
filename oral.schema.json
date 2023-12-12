@@ -1,0 +1,2676 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "OEISC-kage1020",
+  "description": "Implementation of json schema of Oral Examination Information Standard Code v1.02 by kage1020. Check https://www.jda.or.jp/dentist/program/business-lateshtml for more info．",
+  "$comment": "口腔診査情報標準コード仕様のJSONスキーマです。詳細はhttps://www.jda.or.jp/dentist/program/business-lateshtmlを参照してください。",
+  "definitions": {
+    "Extension": {
+      "description": "Optional Extension Element",
+      "$comment": "拡張用の要素です。必要に応じて定義してください。",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of extension information.",
+          "$comment": "拡張要素のIDを指定します。",
+          "type": "string"
+        },
+        "valueString": {
+          "description": "String value of extension information.",
+          "$comment": "拡張要素の値を指定します。",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Extensions of extension information.",
+          "$comment": "拡張要素の拡張用の要素です。必要に応じて定義してください。",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/definitions/Extension"
+          }
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    },
+    "Date": {
+      "description": "Date information.",
+      "$comment": "日付情報を指定します。",
+      "type": "string",
+      "pattern": "^[0-9]{8}$"
+    },
+    "RecordIdentifier": {
+      "description": "Id of record information.",
+      "$comment": "レコードの識別情報を記録します。",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "VR",
+          "description": "Version Record",
+          "$comment": "口腔状態スナップショット出力プログラムが準拠した口腔診査情報標準コード仕様のバージョン情報を記録します。"
+        },
+        {
+          "const": "ON",
+          "description": "Organization Input Record",
+          "$comment": "入力機関情報を記録します。"
+        },
+        {
+          "const": "PN",
+          "description": "Patient Input Record",
+          "$comment": "個人識別情報を記録します。"
+        },
+        {
+          "const": "NS",
+          "description": "Input Type Record",
+          "$comment": "入力種別を記録します。"
+        },
+        {
+          "const": "TB",
+          "description": "Tooth Position Record",
+          "$comment": "歯の部位を記録します。"
+        }
+      ]
+    },
+    "PrefectureCode": {
+      "description": "Code of prefecture.",
+      "$comment": "都道府県コードを指定します。",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "01",
+          "description": "Hokkaido",
+          "$comment": "北海道"
+        },
+        {
+          "const": "02",
+          "description": "Aomori",
+          "$comment": "青森県"
+        },
+        {
+          "const": "03",
+          "description": "Iwate",
+          "$comment": "岩手県"
+        },
+        {
+          "const": "04",
+          "description": "Miyagi",
+          "$comment": "宮城県"
+        },
+        {
+          "const": "05",
+          "description": "Akita",
+          "$comment": "秋田県"
+        },
+        {
+          "const": "06",
+          "description": "Yamagata",
+          "$comment": "山形県"
+        },
+        {
+          "const": "07",
+          "description": "Fukushima",
+          "$comment": "福島県"
+        },
+        {
+          "const": "08",
+          "description": "Ibaraki",
+          "$comment": "茨城県"
+        },
+        {
+          "const": "09",
+          "description": "Tochigi",
+          "$comment": "栃木県"
+        },
+        {
+          "const": "10",
+          "description": "Gunma",
+          "$comment": "群馬県"
+        },
+        {
+          "const": "11",
+          "description": "Saitama",
+          "$comment": "埼玉県"
+        },
+        {
+          "const": "12",
+          "description": "Chiba",
+          "$comment": "千葉県"
+        },
+        {
+          "const": "13",
+          "description": "Tokyo",
+          "$comment": "東京都"
+        },
+        {
+          "const": "14",
+          "description": "Kanagawa",
+          "$comment": "神奈川県"
+        },
+        {
+          "const": "15",
+          "description": "Niigata",
+          "$comment": "新潟県"
+        },
+        {
+          "const": "16",
+          "description": "Toyama",
+          "$comment": "富山県"
+        },
+        {
+          "const": "17",
+          "description": "Ishikawa",
+          "$comment": "石川県"
+        },
+        {
+          "const": "18",
+          "description": "Fukui",
+          "$comment": "福井県"
+        },
+        {
+          "const": "19",
+          "description": "Yamanashi",
+          "$comment": "山梨県"
+        },
+        {
+          "const": "20",
+          "description": "Nagano",
+          "$comment": "長野県"
+        },
+        {
+          "const": "21",
+          "description": "Gifu",
+          "$comment": "岐阜県"
+        },
+        {
+          "const": "22",
+          "description": "Shizuoka",
+          "$comment": "静岡県"
+        },
+        {
+          "const": "23",
+          "description": "Aichi",
+          "$comment": "愛知県"
+        },
+        {
+          "const": "24",
+          "description": "Mie",
+          "$comment": "三重県"
+        },
+        {
+          "const": "25",
+          "description": "Shiga",
+          "$comment": "滋賀県"
+        },
+        {
+          "const": "26",
+          "description": "Kyoto",
+          "$comment": "京都府"
+        },
+        {
+          "const": "27",
+          "description": "Osaka",
+          "$comment": "大阪府"
+        },
+        {
+          "const": "28",
+          "description": "Hyogo",
+          "$comment": "兵庫県"
+        },
+        {
+          "const": "29",
+          "description": "Nara",
+          "$comment": "奈良県"
+        },
+        {
+          "const": "30",
+          "description": "Wakayama",
+          "$comment": "和歌山県"
+        },
+        {
+          "const": "31",
+          "description": "Tottori",
+          "$comment": "鳥取県"
+        },
+        {
+          "const": "32",
+          "description": "Shimane",
+          "$comment": "島根県"
+        },
+        {
+          "const": "33",
+          "description": "Okayama",
+          "$comment": "岡山県"
+        },
+        {
+          "const": "34",
+          "description": "Hiroshima",
+          "$comment": "広島県"
+        },
+        {
+          "const": "35",
+          "description": "Yamaguchi",
+          "$comment": "山口県"
+        },
+        {
+          "const": "36",
+          "description": "Tokushima",
+          "$comment": "徳島県"
+        },
+        {
+          "const": "37",
+          "description": "Kagawa",
+          "$comment": "香川県"
+        },
+        {
+          "const": "38",
+          "description": "Ehime",
+          "$comment": "愛媛県"
+        },
+        {
+          "const": "39",
+          "description": "Kochi",
+          "$comment": "高知県"
+        },
+        {
+          "const": "40",
+          "description": "Fukuoka",
+          "$comment": "福岡県"
+        },
+        {
+          "const": "41",
+          "description": "Saga",
+          "$comment": "佐賀県"
+        },
+        {
+          "const": "42",
+          "description": "Nagasaki",
+          "$comment": "長崎県"
+        },
+        {
+          "const": "43",
+          "description": "Kumamoto",
+          "$comment": "熊本県"
+        },
+        {
+          "const": "44",
+          "description": "Oita",
+          "$comment": "大分県"
+        },
+        {
+          "const": "45",
+          "description": "Miyazaki",
+          "$comment": "宮崎県"
+        },
+        {
+          "const": "46",
+          "description": "Kagoshima",
+          "$comment": "鹿児島県"
+        },
+        {
+          "const": "47",
+          "description": "Okinawa",
+          "$comment": "沖縄県"
+        }
+      ]
+    },
+    "TEL": {
+      "description": "Number of telephone.",
+      "$comment": "電話番号を指定します。",
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{4}-\\d{4}$|^\\d{3}-\\d{3}-\\d{4}$|^\\d{3}-\\d{4}-\\d{3}$|^\\d{4}-\\d{2}-\\d{4}$|^\\d{4}-\\d{4}-\\d{2}$|^\\d{4}-\\d{3}-\\d{3}$|^\\(\\d{2}\\)\\d{4}-\\d{4}$|^\\(\\d{3}\\)\\d{3}-\\d{4}$|^\\(\\d{3}\\)\\d{4}-\\d{3}$|^\\(\\d{4}\\)\\d{2}-\\d{4}$|^\\(\\d{4}\\)\\d{4}-\\d{2}$|^\\(\\d{4}\\)\\d{3}-\\d{3}$"
+    },
+    "PostalCode": {
+      "description": "Number of postal code.",
+      "$comment": "郵便番号を指定します。",
+      "type": "string",
+      "pattern": "^[0-9]{3}-[0-9]{4}$"
+    },
+    "DepartmentCode": {
+      "description": "Code of department.",
+      "$comment": "診療科コードを指定します。",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "01",
+          "description": "Internal Medicine",
+          "$comment": "内科"
+        },
+        {
+          "const": "011",
+          "description": "First Internal Medicine",
+          "$comment": "第1内科"
+        },
+        {
+          "const": "012",
+          "description": "Second Internal Medicine",
+          "$comment": "第2内科"
+        },
+        {
+          "const": "013",
+          "description": "Third Internal Medicine",
+          "$comment": "第3内科"
+        },
+        {
+          "const": "014",
+          "description": "Fourth Internal Medicine",
+          "$comment": "第4内科"
+        },
+        {
+          "const": "018",
+          "description": "General Internal Medicine",
+          "$comment": "一般内科"
+        },
+        {
+          "const": "01A",
+          "description": "Radiation Internal Medicine",
+          "$comment": "被爆放射線医療内科"
+        },
+        {
+          "const": "02",
+          "description": "Psychiatry",
+          "$comment": "精神科"
+        },
+        {
+          "const": "021",
+          "description": "Psychosomatic Medicine",
+          "$comment": "精神科・心の診療科"
+        },
+        {
+          "const": "022",
+          "description": "Day Care Psychiatry",
+          "$comment": "精神科デイケア"
+        },
+        {
+          "const": "03",
+          "description": "Neurology",
+          "$comment": "神経科"
+        },
+        {
+          "const": "04",
+          "description": "Internal Neurology",
+          "$comment": "神経内科"
+        },
+        {
+          "const": "041",
+          "description": "Epilepsy",
+          "$comment": "てんかん科"
+        },
+        {
+          "const": "042",
+          "description": "Memory Disorder",
+          "$comment": "もの忘れ科"
+        },
+        {
+          "const": "043",
+          "description": "Higher Brain Function Disorder",
+          "$comment": "高次脳機能障害科"
+        },
+        {
+          "const": "044",
+          "description": "Headache Outpatient",
+          "$comment": "頭痛外来"
+        },
+        {
+          "const": "045",
+          "description": "Stroke Outpatient",
+          "$comment": "脳卒中外来"
+        },
+        {
+          "const": "05",
+          "description": "Respiratory",
+          "$comment": "呼吸器科"
+        },
+        {
+          "const": "051",
+          "description": "Respiratory and Allergy",
+          "$comment": "呼吸器・アレルギー科"
+        },
+        {
+          "const": "052",
+          "description": "Respiratory and Infectious Disease",
+          "$comment": "呼吸器・感染症内科"
+        },
+        {
+          "const": "053",
+          "description": "Cough Outpatient",
+          "$comment": "せき外来"
+        },
+        {
+          "const": "054",
+          "description": "Smoking Cessation Outpatient",
+          "$comment": "禁煙外来"
+        },
+        {
+          "const": "06",
+          "description": "Gastroenterology",
+          "$comment": "消化器科"
+        },
+        {
+          "const": "061",
+          "description": "Hepatology",
+          "$comment": "肝臓内科"
+        },
+        {
+          "const": "062",
+          "description": "Hepato-biliary Pancreatic",
+          "$comment": "肝胆膵科"
+        },
+        {
+          "const": "063",
+          "description": "Pancreatology",
+          "$comment": "膵臓内科"
+        },
+        {
+          "const": "064",
+          "description": "Biliary and Pancreatic",
+          "$comment": "胆道・膵臓内科"
+        },
+        {
+          "const": "06A",
+          "description": "Hepatic Medicine",
+          "$comment": "肝臓病科"
+        },
+        {
+          "const": "06B",
+          "description": "Fatty Liver Outpatient",
+          "$comment": "脂肪肝外来"
+        },
+        {
+          "const": "07",
+          "description": "Gastrointestinal",
+          "$comment": "胃腸科"
+        },
+        {
+          "const": "07A",
+          "description": "Inflammatory Bowel Disease Outpatient",
+          "$comment": "炎症性腸疾患外来"
+        },
+        {
+          "const": "07B",
+          "description": "Helicobacter pylori Outpatient",
+          "$comment": "ピロリ菌外来"
+        },
+        {
+          "const": "08",
+          "description": "Cardiology",
+          "$comment": "循環器科"
+        },
+        {
+          "const": "081",
+          "description": "",
+          "$comment": "循環器内科"
+        },
+        {
+          "const": "082",
+          "description": "",
+          "$comment": "冠動脈疾患治療部"
+        },
+        {
+          "const": "083",
+          "description": "",
+          "$comment": "リンパ科"
+        },
+        {
+          "const": "09",
+          "description": "",
+          "$comment": "小児科"
+        },
+        {
+          "const": "091",
+          "description": "",
+          "$comment": "小児科周産母子"
+        },
+        {
+          "const": "092",
+          "description": "",
+          "$comment": "新生児科"
+        },
+        {
+          "const": "093",
+          "description": "",
+          "$comment": "小児循環器科"
+        },
+        {
+          "const": "094",
+          "description": "",
+          "$comment": "小児神経科"
+        },
+        {
+          "const": "095",
+          "description": "",
+          "$comment": "未熟児センター"
+        },
+        {
+          "const": "096",
+          "description": "NICU",
+          "$comment": "NICU"
+        },
+        {
+          "const": "097",
+          "description": "",
+          "$comment": "GCU"
+        },
+        {
+          "const": "09A",
+          "description": "",
+          "$comment": "成長発達外来"
+        },
+        {
+          "const": "10",
+          "description": "",
+          "$comment": "外科"
+        },
+        {
+          "const": "101",
+          "description": "",
+          "$comment": "第1外科"
+        },
+        {
+          "const": "102",
+          "description": "",
+          "$comment": "第2外科"
+        },
+        {
+          "const": "103",
+          "description": "",
+          "$comment": "第3外科"
+        },
+        {
+          "const": "105",
+          "description": "",
+          "$comment": "一般外科"
+        },
+        {
+          "const": "106",
+          "description": "",
+          "$comment": "総合外科"
+        },
+        {
+          "const": "107",
+          "description": "",
+          "$comment": "病態外科"
+        },
+        {
+          "const": "10A",
+          "description": "",
+          "$comment": "被爆放射線医療外科"
+        },
+        {
+          "const": "11",
+          "description": "",
+          "$comment": "整形外科"
+        },
+        {
+          "const": "111",
+          "description": "",
+          "$comment": "整形外科・脊椎外科"
+        },
+        {
+          "const": "112",
+          "description": "",
+          "$comment": "脊椎外科"
+        },
+        {
+          "const": "113",
+          "description": "",
+          "$comment": "ロコモティブ外来"
+        },
+        {
+          "const": "114",
+          "description": "",
+          "$comment": "人工関節センター"
+        },
+        {
+          "const": "115",
+          "description": "",
+          "$comment": "装具外来"
+        },
+        {
+          "const": "116",
+          "description": "",
+          "$comment": "アスリート診療"
+        },
+        {
+          "const": "117",
+          "description": "",
+          "$comment": "スポーツ医学"
+        },
+        {
+          "const": "119",
+          "description": "",
+          "$comment": "関節外科"
+        },
+        {
+          "const": "11A",
+          "description": "",
+          "$comment": "手外科"
+        },
+        {
+          "const": "12",
+          "description": "",
+          "$comment": "形成外科"
+        },
+        {
+          "const": "121",
+          "description": "",
+          "$comment": "形成外科・美容外科"
+        },
+        {
+          "const": "122",
+          "description": "",
+          "$comment": "再建外科"
+        },
+        {
+          "const": "13",
+          "description": "",
+          "$comment": "美容外科"
+        },
+        {
+          "const": "14",
+          "description": "",
+          "$comment": "脳神経外科"
+        },
+        {
+          "const": "141",
+          "description": "",
+          "$comment": "脳腫瘍科"
+        },
+        {
+          "const": "15",
+          "description": "",
+          "$comment": "呼吸器外科"
+        },
+        {
+          "const": "16",
+          "description": "",
+          "$comment": "心臓血管外科"
+        },
+        {
+          "const": "162",
+          "description": "",
+          "$comment": "心臓外科"
+        },
+        {
+          "const": "163",
+          "description": "",
+          "$comment": "胸部外科"
+        },
+        {
+          "const": "164",
+          "description": "",
+          "$comment": "循環器外科"
+        },
+        {
+          "const": "165",
+          "description": "",
+          "$comment": "心臓・人工臓器外科"
+        },
+        {
+          "const": "17",
+          "description": "",
+          "$comment": "小児外科"
+        },
+        {
+          "const": "171",
+          "description": "",
+          "$comment": "小児外科（周産母子）"
+        },
+        {
+          "const": "18",
+          "description": "",
+          "$comment": "皮膚泌尿器科"
+        },
+        {
+          "const": "19",
+          "description": "",
+          "$comment": "皮膚科"
+        },
+        {
+          "const": "191",
+          "description": "",
+          "$comment": "皮膚科・レーザ科"
+        },
+        {
+          "const": "192",
+          "description": "",
+          "$comment": "紫外線外来"
+        },
+        {
+          "const": "20",
+          "description": "",
+          "$comment": "泌尿器科"
+        },
+        {
+          "const": "201",
+          "description": "",
+          "$comment": "泌尿器科・男性科"
+        },
+        {
+          "const": "202",
+          "description": "",
+          "$comment": "コンチネンス外来"
+        },
+        {
+          "const": "21",
+          "description": "",
+          "$comment": "性病科"
+        },
+        {
+          "const": "22",
+          "description": "",
+          "$comment": "肛門科"
+        },
+        {
+          "const": "221",
+          "description": "",
+          "$comment": "ストマケア外来"
+        },
+        {
+          "const": "23",
+          "description": "",
+          "$comment": "産婦人科"
+        },
+        {
+          "const": "230",
+          "description": "",
+          "$comment": "産科婦人科"
+        },
+        {
+          "const": "231",
+          "description": "",
+          "$comment": "女性外科"
+        },
+        {
+          "const": "24",
+          "description": "",
+          "$comment": "産科"
+        },
+        {
+          "const": "241",
+          "description": "",
+          "$comment": "助産師外来"
+        },
+        {
+          "const": "25",
+          "description": "",
+          "$comment": "婦人科"
+        },
+        {
+          "const": "251",
+          "description": "",
+          "$comment": "不妊内分泌科"
+        },
+        {
+          "const": "252",
+          "description": "",
+          "$comment": "周産科"
+        },
+        {
+          "const": "253",
+          "description": "",
+          "$comment": "周産期母性科"
+        },
+        {
+          "const": "254",
+          "description": "",
+          "$comment": "婦人周産期科"
+        },
+        {
+          "const": "255",
+          "description": "",
+          "$comment": "腹腔鏡外来"
+        },
+        {
+          "const": "25A",
+          "description": "",
+          "$comment": "女性科"
+        },
+        {
+          "const": "25B",
+          "description": "",
+          "$comment": "女性外来"
+        },
+        {
+          "const": "25C",
+          "description": "",
+          "$comment": "女性診療科・産科"
+        },
+        {
+          "const": "26",
+          "description": "",
+          "$comment": "眼科"
+        },
+        {
+          "const": "261",
+          "description": "",
+          "$comment": "眼科・視覚矯正科"
+        },
+        {
+          "const": "262",
+          "description": "",
+          "$comment": "白内障外来"
+        },
+        {
+          "const": "263",
+          "description": "",
+          "$comment": "コンタクトレンズ外来"
+        },
+        {
+          "const": "264",
+          "description": "",
+          "$comment": "ドライアイ外来"
+        },
+        {
+          "const": "265",
+          "description": "",
+          "$comment": "ぶどう膜炎外来"
+        },
+        {
+          "const": "266",
+          "description": "",
+          "$comment": "角膜・眼アレルギー外来"
+        },
+        {
+          "const": "267",
+          "description": "",
+          "$comment": "網膜疾患外来"
+        },
+        {
+          "const": "26A",
+          "description": "",
+          "$comment": "角膜移植部"
+        },
+        {
+          "const": "27",
+          "description": "",
+          "$comment": "耳鼻咽喉科"
+        },
+        {
+          "const": "271",
+          "description": "",
+          "$comment": "耳鼻咽喉科・神経耳科"
+        },
+        {
+          "const": "272",
+          "description": "",
+          "$comment": "耳鼻咽喉・頭頸部外科"
+        },
+        {
+          "const": "273",
+          "description": "",
+          "$comment": "困難気道外来"
+        },
+        {
+          "const": "274",
+          "description": "",
+          "$comment": "頭頸部科"
+        },
+        {
+          "const": "28",
+          "description": "",
+          "$comment": "気管食道科"
+        },
+        {
+          "const": "30",
+          "description": "",
+          "$comment": "放射線科"
+        },
+        {
+          "const": "301",
+          "description": "",
+          "$comment": "放射線部"
+        },
+        {
+          "const": "302",
+          "description": "",
+          "$comment": "放射線診断科"
+        },
+        {
+          "const": "303",
+          "description": "",
+          "$comment": "放射線画像診断・ＩＶＲ科"
+        },
+        {
+          "const": "304",
+          "description": "",
+          "$comment": "核医学科"
+        },
+        {
+          "const": "30B",
+          "description": "",
+          "$comment": "放射線治療科"
+        },
+        {
+          "const": "30C",
+          "description": "",
+          "$comment": "Ｘ線科"
+        },
+        {
+          "const": "31",
+          "description": "",
+          "$comment": "麻酔科"
+        },
+        {
+          "const": "311",
+          "description": "",
+          "$comment": "麻酔・疼痛・緩和医療科"
+        },
+        {
+          "const": "312",
+          "description": "",
+          "$comment": "麻酔科蘇生科"
+        },
+        {
+          "const": "313",
+          "description": "",
+          "$comment": "麻酔・疼痛科"
+        },
+        {
+          "const": "31A",
+          "description": "",
+          "$comment": "ペインクリニック科"
+        },
+        {
+          "const": "33",
+          "description": "",
+          "$comment": "心療内科"
+        },
+        {
+          "const": "331",
+          "description": "",
+          "$comment": "心身医学科"
+        },
+        {
+          "const": "332",
+          "description": "",
+          "$comment": "心の内科"
+        },
+        {
+          "const": "333",
+          "description": "",
+          "$comment": "こどものこころ診療"
+        },
+        {
+          "const": "334",
+          "description": "",
+          "$comment": "小児精神科"
+        },
+        {
+          "const": "34",
+          "description": "",
+          "$comment": "アレルギー科"
+        },
+        {
+          "const": "34A",
+          "description": "",
+          "$comment": "環境医学外来（アレルギー科）"
+        },
+        {
+          "const": "34B",
+          "description": "",
+          "$comment": "アレルギー内科"
+        },
+        {
+          "const": "34C",
+          "description": "",
+          "$comment": "アレルギー・免疫内科"
+        },
+        {
+          "const": "34D",
+          "description": "",
+          "$comment": "アレルギー・リウマチ内科"
+        },
+        {
+          "const": "35",
+          "description": "",
+          "$comment": "リウマチ科"
+        },
+        {
+          "const": "35A",
+          "description": "",
+          "$comment": "リウマチ内科"
+        },
+        {
+          "const": "35B",
+          "description": "",
+          "$comment": "内分泌・リウマチ科"
+        },
+        {
+          "const": "36",
+          "description": "",
+          "$comment": "リハビリテーション科"
+        },
+        {
+          "const": "361",
+          "description": "",
+          "$comment": "言語療法科"
+        },
+        {
+          "const": "362",
+          "description": "",
+          "$comment": "股体不自由リハビリテーション科"
+        },
+        {
+          "const": "363",
+          "description": "",
+          "$comment": "内部障害リハビリテーション科"
+        },
+        {
+          "const": "364",
+          "description": "",
+          "$comment": "理学療法科"
+        },
+        {
+          "const": "365",
+          "description": "",
+          "$comment": "物理療法内科"
+        },
+        {
+          "const": "37",
+          "description": "",
+          "$comment": "病理診断科"
+        },
+        {
+          "const": "38",
+          "description": "",
+          "$comment": "臨床検査科"
+        },
+        {
+          "const": "39",
+          "description": "",
+          "$comment": "救急科"
+        },
+        {
+          "const": "391",
+          "description": "",
+          "$comment": "救命救急センター"
+        },
+        {
+          "const": "392",
+          "description": "",
+          "$comment": "内科系救急科"
+        },
+        {
+          "const": "393",
+          "description": "",
+          "$comment": "救急外科"
+        },
+        {
+          "const": "394",
+          "description": "",
+          "$comment": "外科系救急科"
+        },
+        {
+          "const": "398",
+          "description": "",
+          "$comment": "初期診療・救急科"
+        },
+        {
+          "const": "40",
+          "description": "",
+          "$comment": "遺伝科"
+        },
+        {
+          "const": "41",
+          "description": "",
+          "$comment": "血液内科"
+        },
+        {
+          "const": "41C",
+          "description": "",
+          "$comment": "血液免疫科"
+        },
+        {
+          "const": "41D",
+          "description": "",
+          "$comment": "血液科"
+        },
+        {
+          "const": "42",
+          "description": "",
+          "$comment": "血液腫瘍内科"
+        },
+        {
+          "const": "421",
+          "description": "",
+          "$comment": "無菌治療部"
+        },
+        {
+          "const": "43",
+          "description": "",
+          "$comment": "血液透析科"
+        },
+        {
+          "const": "431",
+          "description": "",
+          "$comment": "血液浄化療法部"
+        },
+        {
+          "const": "432",
+          "description": "",
+          "$comment": "透析治療部"
+        },
+        {
+          "const": "44",
+          "description": "",
+          "$comment": "健診科"
+        },
+        {
+          "const": "45",
+          "description": "",
+          "$comment": "呼吸器内科"
+        },
+        {
+          "const": "46",
+          "description": "",
+          "$comment": "在宅診療科"
+        },
+        {
+          "const": "47",
+          "description": "",
+          "$comment": "腫瘍診療科"
+        },
+        {
+          "const": "471",
+          "description": "",
+          "$comment": "腫瘍内科"
+        },
+        {
+          "const": "472",
+          "description": "",
+          "$comment": "化学療法部"
+        },
+        {
+          "const": "473",
+          "description": "",
+          "$comment": "小児腫瘍科"
+        },
+        {
+          "const": "474",
+          "description": "",
+          "$comment": "精神腫瘍外来"
+        },
+        {
+          "const": "475",
+          "description": "",
+          "$comment": "免疫療法外来"
+        },
+        {
+          "const": "476",
+          "description": "",
+          "$comment": "脳腫瘍診療部"
+        },
+        {
+          "const": "48",
+          "description": "",
+          "$comment": "腎臓内科"
+        },
+        {
+          "const": "48D",
+          "description": "",
+          "$comment": "腎不全科"
+        },
+        {
+          "const": "48E",
+          "description": "",
+          "$comment": "腎移植科"
+        },
+        {
+          "const": "49",
+          "description": "",
+          "$comment": "睡眠診療部"
+        },
+        {
+          "const": "491",
+          "description": "",
+          "$comment": "睡眠時無呼吸症候群外来"
+        },
+        {
+          "const": "50",
+          "description": "",
+          "$comment": "精神神経科"
+        },
+        {
+          "const": "51",
+          "description": "",
+          "$comment": "総合診療科"
+        },
+        {
+          "const": "51A",
+          "description": "",
+          "$comment": "予診科"
+        },
+        {
+          "const": "51B",
+          "description": "",
+          "$comment": "初診科"
+        },
+        {
+          "const": "51G",
+          "description": "",
+          "$comment": "総合内科"
+        },
+        {
+          "const": "52",
+          "description": "",
+          "$comment": "内視鏡診療部"
+        },
+        {
+          "const": "521",
+          "description": "",
+          "$comment": "光学医療診療部"
+        },
+        {
+          "const": "53",
+          "description": "",
+          "$comment": "内分泌・代謝科"
+        },
+        {
+          "const": "53A",
+          "description": "",
+          "$comment": "内分泌・代謝内科"
+        },
+        {
+          "const": "54",
+          "description": "",
+          "$comment": "膠原病科"
+        },
+        {
+          "const": "54A",
+          "description": "",
+          "$comment": "膠原病内科"
+        },
+        {
+          "const": "54B",
+          "description": "",
+          "$comment": "膠原病・アレルギ—内科"
+        },
+        {
+          "const": "54C",
+          "description": "",
+          "$comment": "膠原病・アレルギ—・リウマチ内科"
+        },
+        {
+          "const": "54D",
+          "description": "",
+          "$comment": "免疫・膠原病・感染症科"
+        },
+        {
+          "const": "54E",
+          "description": "",
+          "$comment": "膠原病・リウマチ内科"
+        },
+        {
+          "const": "54F",
+          "description": "",
+          "$comment": "膠原病・感染症内科"
+        },
+        {
+          "const": "54G",
+          "description": "",
+          "$comment": "免疫・膠原病内科"
+        },
+        {
+          "const": "70",
+          "description": "",
+          "$comment": "消化器内科"
+        },
+        {
+          "const": "70A",
+          "description": "",
+          "$comment": "消化管内科"
+        },
+        {
+          "const": "71",
+          "description": "",
+          "$comment": "内分泌内科"
+        },
+        {
+          "const": "72",
+          "description": "",
+          "$comment": "代謝内科"
+        },
+        {
+          "const": "72A",
+          "description": "",
+          "$comment": "骨粗鬆症外来"
+        },
+        {
+          "const": "73",
+          "description": "",
+          "$comment": "糖尿病内科"
+        },
+        {
+          "const": "731",
+          "description": "",
+          "$comment": "糖尿病科"
+        },
+        {
+          "const": "73B",
+          "description": "",
+          "$comment": "糖尿病・代謝内科"
+        },
+        {
+          "const": "73C",
+          "description": "",
+          "$comment": "糖尿病・内分泌内科"
+        },
+        {
+          "const": "73D",
+          "description": "",
+          "$comment": "糖尿病・代謝・内分泌内科"
+        },
+        {
+          "const": "73F",
+          "description": "",
+          "$comment": "肝臓・糖尿病・内分泌内科"
+        },
+        {
+          "const": "73G",
+          "description": "",
+          "$comment": "糖尿病・栄養内科"
+        },
+        {
+          "const": "74",
+          "description": "",
+          "$comment": "腎臓・内分泌内科"
+        },
+        {
+          "const": "74A",
+          "description": "",
+          "$comment": "腎・高血圧・脳血管科"
+        },
+        {
+          "const": "74B",
+          "description": "",
+          "$comment": "腎・高血圧・内分泌科"
+        },
+        {
+          "const": "74C",
+          "description": "",
+          "$comment": "腎臓・内分泌代謝内科"
+        },
+        {
+          "const": "75",
+          "description": "",
+          "$comment": "感染症科"
+        },
+        {
+          "const": "751",
+          "description": "",
+          "$comment": "感染症内科"
+        },
+        {
+          "const": "752",
+          "description": "",
+          "$comment": "総合感染症科"
+        },
+        {
+          "const": "753",
+          "description": "",
+          "$comment": "感染症管理治療部"
+        },
+        {
+          "const": "754",
+          "description": "",
+          "$comment": "感染制御部"
+        },
+        {
+          "const": "76",
+          "description": "",
+          "$comment": "漢方科"
+        },
+        {
+          "const": "761",
+          "description": "",
+          "$comment": "漢方内科"
+        },
+        {
+          "const": "762",
+          "description": "",
+          "$comment": "和漢診療科"
+        },
+        {
+          "const": "77",
+          "description": "",
+          "$comment": "老年科"
+        },
+        {
+          "const": "771",
+          "description": "",
+          "$comment": "老年病内科"
+        },
+        {
+          "const": "772",
+          "description": "",
+          "$comment": "老人科"
+        },
+        {
+          "const": "78",
+          "description": "",
+          "$comment": "血管外科"
+        },
+        {
+          "const": "79",
+          "description": "",
+          "$comment": "血管内治療科"
+        },
+        {
+          "const": "79A",
+          "description": "",
+          "$comment": "脳血管内治療科"
+        },
+        {
+          "const": "7A",
+          "description": "",
+          "$comment": "消化器外科"
+        },
+        {
+          "const": "7A1",
+          "description": "",
+          "$comment": "消化管外科"
+        },
+        {
+          "const": "7B",
+          "description": "",
+          "$comment": "上部消化管外科"
+        },
+        {
+          "const": "7B1",
+          "description": "",
+          "$comment": "食道外科"
+        },
+        {
+          "const": "7B2",
+          "description": "",
+          "$comment": "食道・胃腸外科"
+        },
+        {
+          "const": "7B3",
+          "description": "",
+          "$comment": "胃・食道外科"
+        },
+        {
+          "const": "7B4",
+          "description": "",
+          "$comment": "胃腸外科"
+        },
+        {
+          "const": "7B5",
+          "description": "",
+          "$comment": "胃外科"
+        },
+        {
+          "const": "7C",
+          "description": "",
+          "$comment": "下部消化管外科"
+        },
+        {
+          "const": "7C1",
+          "description": "",
+          "$comment": "大腸外科"
+        },
+        {
+          "const": "7C2",
+          "description": "",
+          "$comment": "大腸・肛門外科"
+        },
+        {
+          "const": "80",
+          "description": "",
+          "$comment": "肝胆膵外科"
+        },
+        {
+          "const": "801",
+          "description": "",
+          "$comment": "肝胆外科"
+        },
+        {
+          "const": "802",
+          "description": "",
+          "$comment": "肝胆膵・移植外科"
+        },
+        {
+          "const": "81",
+          "description": "",
+          "$comment": "移植外科"
+        },
+        {
+          "const": "811",
+          "description": "",
+          "$comment": "移植・再建・内視鏡外科"
+        },
+        {
+          "const": "812",
+          "description": "",
+          "$comment": "人工臓器移植外科"
+        },
+        {
+          "const": "813",
+          "description": "",
+          "$comment": "移植診療部"
+        },
+        {
+          "const": "814",
+          "description": "",
+          "$comment": "骨バンク"
+        },
+        {
+          "const": "82",
+          "description": "",
+          "$comment": "乳腺外科"
+        },
+        {
+          "const": "821",
+          "description": "",
+          "$comment": "乳腺内分泌外科"
+        },
+        {
+          "const": "822",
+          "description": "",
+          "$comment": "乳腺・甲状腺外科"
+        },
+        {
+          "const": "823",
+          "description": "",
+          "$comment": "乳腺・内分泌外科"
+        },
+        {
+          "const": "824",
+          "description": "",
+          "$comment": "ブレストセンター"
+        },
+        {
+          "const": "83",
+          "description": "",
+          "$comment": "緩和ケア科"
+        },
+        {
+          "const": "831",
+          "description": "",
+          "$comment": "緩和ケア相談"
+        },
+        {
+          "const": "832",
+          "description": "",
+          "$comment": "緩和医療"
+        },
+        {
+          "const": "833",
+          "description": "",
+          "$comment": "地域包括緩和ケア"
+        },
+        {
+          "const": "84",
+          "description": "",
+          "$comment": "集中治療部"
+        },
+        {
+          "const": "85",
+          "description": "",
+          "$comment": "遺伝子診療部"
+        },
+        {
+          "const": "851",
+          "description": "",
+          "$comment": "ゲノム診療部"
+        },
+        {
+          "const": "86",
+          "description": "",
+          "$comment": "顎口腔診療科"
+        },
+        {
+          "const": "861",
+          "description": "",
+          "$comment": "顎口腔外科"
+        },
+        {
+          "const": "862",
+          "description": "",
+          "$comment": "顎顔面再建科"
+        },
+        {
+          "const": "863",
+          "description": "",
+          "$comment": "顎機能科"
+        },
+        {
+          "const": "864",
+          "description": "",
+          "$comment": "顎検査科"
+        },
+        {
+          "const": "865",
+          "description": "",
+          "$comment": "顎歯科"
+        },
+        {
+          "const": "866",
+          "description": "",
+          "$comment": "顔面口腔外科"
+        },
+        {
+          "const": "867",
+          "description": "",
+          "$comment": "顔面外科"
+        },
+        {
+          "const": "86A",
+          "description": "",
+          "$comment": "口腔診療科"
+        },
+        {
+          "const": "86D",
+          "description": "",
+          "$comment": "口腔総合診療科"
+        },
+        {
+          "const": "86E",
+          "description": "",
+          "$comment": "口腔画像診断科"
+        },
+        {
+          "const": "86F",
+          "description": "",
+          "$comment": "口腔機能回復科"
+        },
+        {
+          "const": "86G",
+          "description": "",
+          "$comment": "口腔診断科"
+        },
+        {
+          "const": "86H",
+          "description": "",
+          "$comment": "口腔言語科"
+        },
+        {
+          "const": "87",
+          "description": "",
+          "$comment": "輸血診療部"
+        },
+        {
+          "const": "88",
+          "description": "",
+          "$comment": "予防医学診療部"
+        },
+        {
+          "const": "882",
+          "description": "",
+          "$comment": "保健診療部"
+        },
+        {
+          "const": "883",
+          "description": "",
+          "$comment": "メディカルフィットネス"
+        },
+        {
+          "const": "89",
+          "description": "",
+          "$comment": "予防接種科"
+        },
+        {
+          "const": "8A",
+          "description": "",
+          "$comment": "先端医療開発診療"
+        },
+        {
+          "const": "8B",
+          "description": "",
+          "$comment": "分子診療・細胞治療"
+        },
+        {
+          "const": "8C",
+          "description": "",
+          "$comment": "特殊外来"
+        },
+        {
+          "const": "8D",
+          "description": "",
+          "$comment": "手術部"
+        },
+        {
+          "const": "8D2",
+          "description": "",
+          "$comment": "デイ・サージェリー"
+        },
+        {
+          "const": "8E",
+          "description": "",
+          "$comment": "薬剤部"
+        },
+        {
+          "const": "8E1",
+          "description": "",
+          "$comment": "薬剤情報部"
+        },
+        {
+          "const": "8E2",
+          "description": "",
+          "$comment": "臨床薬理内科"
+        },
+        {
+          "const": "8G",
+          "description": "",
+          "$comment": "栄養指導科"
+        },
+        {
+          "const": "8H",
+          "description": "",
+          "$comment": "看護部"
+        },
+        {
+          "const": "8J",
+          "description": "",
+          "$comment": "地域医療連携部"
+        },
+        {
+          "const": "8K",
+          "description": "",
+          "$comment": "治験センター"
+        },
+        {
+          "const": "90",
+          "description": "",
+          "$comment": "歯科"
+        },
+        {
+          "const": "901",
+          "description": "",
+          "$comment": "歯科顎口腔外科"
+        },
+        {
+          "const": "902",
+          "description": "",
+          "$comment": "歯科口腔外科"
+        },
+        {
+          "const": "903",
+          "description": "",
+          "$comment": "矯正歯科"
+        },
+        {
+          "const": "904",
+          "description": "",
+          "$comment": "歯周科"
+        },
+        {
+          "const": "905",
+          "description": "",
+          "$comment": "歯内治療科"
+        },
+        {
+          "const": "906",
+          "description": "",
+          "$comment": "小児歯科"
+        },
+        {
+          "const": "907",
+          "description": "",
+          "$comment": "障害歯科"
+        },
+        {
+          "const": "908",
+          "description": "",
+          "$comment": "クラウン補綴科"
+        },
+        {
+          "const": "909",
+          "description": "",
+          "$comment": "特殊歯科"
+        },
+        {
+          "const": "90A",
+          "description": "",
+          "$comment": "虫歯科"
+        },
+        {
+          "const": "90B",
+          "description": "",
+          "$comment": "医学支援歯科"
+        },
+        {
+          "const": "90C",
+          "description": "",
+          "$comment": "全身管理歯科"
+        },
+        {
+          "const": "90D",
+          "description": "",
+          "$comment": "総合歯科"
+        },
+        {
+          "const": "90E",
+          "description": "",
+          "$comment": "保存修復歯科"
+        },
+        {
+          "const": "90F",
+          "description": "",
+          "$comment": "予防歯科"
+        },
+        {
+          "const": "90G",
+          "description": "",
+          "$comment": "咬合修復科"
+        },
+        {
+          "const": "90H",
+          "description": "",
+          "$comment": "審美歯科"
+        },
+        {
+          "const": "90J",
+          "description": "",
+          "$comment": "義歯科"
+        },
+        {
+          "const": "90K",
+          "description": "",
+          "$comment": "義歯補綴科"
+        },
+        {
+          "const": "90L",
+          "description": "",
+          "$comment": "インプラント歯科"
+        },
+        {
+          "const": "90M",
+          "description": "",
+          "$comment": "高齢歯科"
+        },
+        {
+          "const": "90N",
+          "description": "",
+          "$comment": "小児咬合障害科"
+        },
+        {
+          "const": "90P",
+          "description": "",
+          "$comment": "歯科麻酔科"
+        },
+        {
+          "const": "90R",
+          "description": "",
+          "$comment": "歯科X線科"
+        },
+        {
+          "const": "90S",
+          "description": "",
+          "$comment": "健康歯科"
+        },
+        {
+          "const": "90T",
+          "description": "",
+          "$comment": "歯科予診"
+        },
+        {
+          "const": "98",
+          "description": "",
+          "$comment": "医事・事務"
+        },
+        {
+          "const": "981",
+          "description": "",
+          "$comment": "病歴部"
+        },
+        {
+          "const": "982",
+          "description": "",
+          "$comment": "事務"
+        },
+        {
+          "const": "983",
+          "description": "",
+          "$comment": "医療社会福祉部"
+        },
+        {
+          "const": "9Z",
+          "description": "",
+          "$comment": "その他"
+        }
+      ]
+    },
+    "Version": {
+      "id": "VR",
+      "description": "Version information of Oral Examination Information Standard Code.",
+      "$comment": "口腔状態スナップショット出力プログラムが準拠した口腔診査情報標準コード仕様のバージョン情報を記録します。",
+      "properties": {
+        "recordId": {
+          "id": "VR-1",
+          "description": "Id of record information.",
+          "$comment": "バージョンレコードを表す識別情報「VR」を記録します。",
+          "type": "string",
+          "const": "VR"
+        },
+        "version": {
+          "id": "VR-2",
+          "description": "Version of Oral Examination Information Standard Code. It should be in the format of '\"JDAOES\" + major version with 4 digits + minor version with 2 digits'. e.g. \"JDAOES000102\"",
+          "$comment": "口腔状態スナップショット出力プログラムが準拠した口腔診査情報標準コード仕様のバージョン情報を JDAOES メジャー バージョン ４桁＋マイナーバージョン 2桁 （ピリオドなし、右詰、前 0 埋め）（ Ver.1.02 の記録例： JDAOES000102 ）で記録します。",
+          "type": "string",
+          "pattern": "^JDAOES[0-9]{6}$"
+        },
+        "extensions": {
+          "description": "Extensions of version information.",
+          "$comment": "バージョンレコードの拡張要素です。必要に応じて定義してください。",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/definitions/Extension"
+          }
+        }
+      },
+      "type": "object",
+      "required": ["recordId", "version"],
+      "additionalProperties": false
+    },
+    "Organization": {
+      "id": "ON",
+      "description": "Organization input information of Oral Examination Information Standard Code.",
+      "$comment": "入力機関情報を記録します。",
+      "properties": {
+        "recordId": {
+          "id": "ON-1",
+          "description": "Id of record information.",
+          "$comment": "入力機関情報レコードを表す識別情報「ON」を記録します。",
+          "type": "string",
+          "const": "ON"
+        },
+        "destinationType": {
+          "id": "ON-2",
+          "description": "Type of destination organization.",
+          "$comment": "送信先の機関種別を記録します。",
+          "anyOf": [
+            {
+              "const": "00",
+              "description": "None",
+              "$comment": "該当なし"
+            },
+            {
+              "const": "01",
+              "description": "Other Health Facility",
+              "$comment": "他医療機関等"
+            },
+            {
+              "const": "02",
+              "description": "Outsourcing",
+              "$comment": "委託業者"
+            },
+            {
+              "const": "03",
+              "description": "Health Insurance Claims Review & Reimbursement services",
+              "$comment": "社会保険診療報酬支払基金"
+            },
+            {
+              "const": "04",
+              "description": "Regional Database",
+              "$comment": "地域データベース"
+            },
+            {
+              "const": "05",
+              "description": "National Database",
+              "$comment": "ナショナルデータベース"
+            }
+          ]
+        },
+        "destinationPrefectureCode": {
+          "id": "ON-3",
+          "description": "Prefecture code of destination organization.",
+          "$comment": "送信先機関の所在する都道府県コード（レセ電手引き別表２と同じ）を記録します。",
+          "$ref": "#/definitions/PrefectureCode"
+        },
+        "destinationName": {
+          "id": "ON-4",
+          "description": "Name of destination organization.",
+          "$comment": "送信先機関名を全角40文字以内で記録します。（ 40 文字を超える場合はレセ電と同様に略します。）",
+          "type": "string",
+          "maxLength": 40
+        },
+        "destinationCode": {
+          "id": "ON-5",
+          "description": "Code of destination organization. If destination is health facility, it should be in the format of 'prefecture code + department code (medical: 1, dental: 3) + health facility code with 7 digits'. If destination is examination center, it should be center code with 10 digits. Others should be in the format of '\"9\" + TEL number with last 9 digits'.",
+          "$comment": "医療機関の場合は、都道府県コード2桁+点数表番号1桁（医科「1」、歯科「 3 」）＋医療機関コード７桁の計 10 桁を記録します。健診等機関の場合は健診等機関コード10 桁を記録します。 上記以外の 機関（施設）の場合は 、「 9 」+「 機関（施設）の電話番号下９桁」を医療機関コードとして代用してください。",
+          "type": "string",
+          "pattern": "^(0[1-9]|[1-3][0-9]|4[0-7])1[0-9]{7}$|^(0[1-9]|[1-3][0-9]|4[0-7])3[0-9]{7}$|^[0-9]{10}$|^9[0-9]{9}$"
+        },
+        "inputOrganizationType": {
+          "id": "ON-6",
+          "description": "Type of input organization.",
+          "$comment": "入力機関の種別を記録します。",
+          "oneOf": [
+            {
+              "const": "01",
+              "description": "Others",
+              "$comment": "医療機関以外"
+            },
+            {
+              "const": "02",
+              "description": "Health Facility",
+              "$comment": "医療機関"
+            }
+          ]
+        },
+        "inputPrefectureCode": {
+          "id": "ON-7",
+          "description": "Prefecture code of input organization.",
+          "$comment": "データ入力機関の所在する都道府県コード（レセ電手引き 別表２と同じ）を記録します。",
+          "$ref": "#/definitions/PrefectureCode"
+        },
+        "inputName": {
+          "id": "ON-8",
+          "description": "Name of input organization.",
+          "$comment": "入力機関名を全角40文字以内で記録します。 40文字を超える場合はレセ電と同様に略します。）",
+          "type": "string",
+          "maxLength": 40
+        },
+        "inputCode": {
+          "id": "ON-9",
+          "description": "Code of input organization. If input is health facility, it should be in the format of 'prefecture code + department code (medical: 1, dental: 3) + health facility code with 7 digits'. If input is examination center, it should be center code with 10 digits. Others should be in the format of '\"9\" + TEL number with last 9 digits'.",
+          "$comment": "医療機関の場合は、都道府県コード2桁+点数表番号1桁（医科「1」、歯科「3」）+医療機関コード7桁の計10桁を記録します。健診等機関の場合は健診等機関コード10桁を記録します。上記以外の機関（施設）の場合は、「9」+「機関（施設）の電話番号下9桁」を医療機関コードとして代用してください。",
+          "type": "string",
+          "pattern": "^(0[1-9]|[1-3][0-9]|4[0-7])1[0-9]{7}$|^(0[1-9]|[1-3][0-9]|4[0-7])3[0-9]{7}$|^[0-9]{10}$|^9[0-9]{9}$"
+        },
+        "inputTEL": {
+          "id": "ON-10",
+          "description": "TEL number of input organization. Outside area code should use '-' or '()'.",
+          "$comment": "入力機関の電話番号を記録します。市外局番等は、レセ電に準じて 半角の「-」「()」を用いて記録します。",
+          "$ref": "#/definitions/TEL"
+        },
+        "departmentCode": {
+          "id": "ON-11",
+          "description": "Code of department. Normally, it should be '90' for dental. If output system has other department code, it should be recorded.",
+          "$comment": "SS-MIX2 統一診療科コード表 V1.0 の診療科コード を記録します。通常は、歯科の ２桁科コード「 90 」 を記録します。 出力システムが歯科以外の診療科 コード 情報を持っている場合は、その診療科コードを記録します。",
+          "$ref": "#/definitions/DepartmentCode"
+        },
+        "departmentName": {
+          "id": "ON-12",
+          "description": "Name of department. Normally, it should be '歯科' for dental. If output system has other department name, it should be recorded.",
+          "$comment": "診療科コード(ON-11)に対応するSS-MIX2統一診療科コード表V1.0の診療科名を記録します。通常は、歯科の2桁科コード「90」に対応する診療科名「歯科」を記録します。出力システムが歯科以外の診療科コード情報を持っている場合は、その診療科名を記録します。",
+          "type": "string",
+          "maxLength": 40
+        },
+        "extensions": {
+          "description": "Extensions of organization information.",
+          "$comment": "入力機関情報レコードの拡張要素です。必要に応じて定義してください。",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/definitions/Extension"
+          }
+        }
+      },
+      "type": "object",
+      "required": [
+        "recordId",
+        "inputOrganizationType",
+        "inputPrefectureCode",
+        "inputName",
+        "inputCode",
+        "inputTEL",
+        "departmentCode",
+        "departmentName"
+      ],
+      "additionalProperties": false
+    },
+    "Person": {
+      "id": "PN",
+      "description": "Person information of Oral Examination Information Standard Code.",
+      "$comment": "個人識別情報を記録します。",
+      "properties": {
+        "recordId": {
+          "id": "PN-1",
+          "description": "Id of record information.",
+          "$comment": "個人識別情報レコードを表す識別情報「PN」を記録します。",
+          "type": "string",
+          "const": "PN"
+        },
+        "insurerNumber": {
+          "id": "PN-2",
+          "description": "Insurer number of person.",
+          "$comment": "保険者番号を記録します。",
+          "type": "string",
+          "pattern": "^[0-9a-zA-Z]{8}$"
+        },
+        "insuredSymbol": {
+          "id": "PN-3",
+          "description": "Symbol of insured card.",
+          "$comment": "被保険者証（手帳）等の記号のみを記録します。",
+          "type": "string",
+          "maxLength": 38
+        },
+        "insuredNumber": {
+          "id": "PN-4",
+          "description": "Number of insured card.",
+          "$comment": "被保険者証（手帳）等の番号のみを記録します。",
+          "type": "string",
+          "maxLength": 38
+        },
+        "insuredBranchNumber": {
+          "id": "PN-5",
+          "description": "Branch number of insured card.",
+          "$comment": "被保険者証（手帳）等の枝番2桁を記録します。",
+          "type": "string",
+          "pattern": "^[0-9a-zA-Z]{2}$"
+        },
+        "family": {
+          "id": "PN-6",
+          "description": "Type of Person.",
+          "$comment": "本人・家族別を記録します。",
+          "type": "string",
+          "oneOf": [
+            {
+              "const": "01",
+              "description": "Self",
+              "$comment": "本人"
+            },
+            {
+              "const": "02",
+              "description": "Family",
+              "$comment": "家族"
+            }
+          ]
+        },
+        "innerId": {
+          "id": "PN-7",
+          "description": "Inner ID of person.",
+          "$comment": "医療機関内ID（カルテ番号等）や健診機関での健診番号（受診券番号）、企業での社員番号等の個人識別IDを記録します。",
+          "type": "string",
+          "maxLength": 16
+        },
+        "verifyNumber1": {
+          "id": "PN-8",
+          "description": "Verify number 1 of person.",
+          "$comment": "個人確認用番号１（医療等ＩＤ）を記録します。現在は未整備のため記録は省略します。",
+          "type": "string",
+          "maxLength": 64
+        },
+        "verifyNumber2": {
+          "id": "PN-9",
+          "description": "Verify number 2 of person.",
+          "$comment": "個人確認用番号２（医療等ＩＤ）を記録します。現在は未整備のため記録は省略します。",
+          "type": "string",
+          "maxLength": 64
+        },
+        "examinationName": {
+          "id": "PN-10",
+          "description": "Name of examination.",
+          "$comment": "健診等の実施名称（例：○○年度○○県○○市○○健診）があれば記録します。",
+          "type": "string",
+          "maxLength": 80
+        },
+        "examinationCode": {
+          "id": "PN-11",
+          "description": "Code of examination.",
+          "$comment": "健診等の実施名称に対応するコード（整理番号等）があれば記録します。",
+          "type": "string",
+          "maxLength": 80
+        },
+        "examinationDate": {
+          "id": "PN-12",
+          "description": "Date of examination.",
+          "$comment": "診療・健診年月日を記録します。",
+          "$ref": "#/definitions/Date"
+        },
+        "name": {
+          "id": "PN-13",
+          "description": "Name of person.",
+          "$comment": "対象者の氏名を、全て全角（最大40文字）又で記録します。姓名の間に全角スペースを記録します。",
+          "type": "string",
+          "maxLength": 80
+        },
+        "kana": {
+          "id": "PN-14",
+          "description": "Kana of person.",
+          "$comment": "対象者氏名のフリガナを、全て全角（最大40文字）カタカナまたはひらがなで記録します。姓名の間に全角スペースを記録します。",
+          "type": "string",
+          "maxLength": 80
+        },
+        "sex": {
+          "id": "PN-15",
+          "description": "Sex of person.",
+          "$comment": "性別（男女区分）を記録します。",
+          "oneOf": [
+            {
+              "const": "01",
+              "description": "Male",
+              "$comment": "男"
+            },
+            {
+              "const": "02",
+              "description": "Female",
+              "$comment": "女"
+            }
+          ]
+        },
+        "birthday": {
+          "id": "PN-16",
+          "description": "Birthday of person.",
+          "$comment": "対象者の生年月日を記録します。",
+          "$ref": "#/definitions/Date"
+        },
+        "age": {
+          "id": "PN-17",
+          "description": "Age of person. If age is less than 1 year, it should be 0.",
+          "$comment": "診療・健診年月日時点の年齢を記録します。1歳未満の場合は「0」を記録します。",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "ageMonth": {
+          "id": "PN-18",
+          "description": "Age month of person. If age is less than 1 year, it should be 0.",
+          "$comment": "診療・健診年月日時点が何歳何か月何日かの「何か月」を記録します。1か月未満の場合は「0」を記録します。",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "ageDay": {
+          "id": "PN-19",
+          "description": "Age day of person. The day of birth is 0 day.",
+          "$comment": "診療・健診年月日時点が何歳何か月何日かの「何日」を記録します。生まれた日を0日として数えます。",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 31
+        },
+        "postalCode": {
+          "id": "PN-20",
+          "description": "Postal code of person. It should be in the format of 'NNN-NNNN'. e.g. 123-1234",
+          "$comment": "郵便番号（〒）を半角の「-」を用いてNNN-NNNN形式で記録します。（例 123-1234）",
+          "$ref": "#/definitions/PostalCode"
+        },
+        "address1": {
+          "id": "PN-21",
+          "description": "Address 1 of person. It should be in the format of 'Prefecture + City + Town + Chome + Ban + Go' without space. e.g. '東京都千代田区九段北4丁目1番20号'",
+          "$comment": "郵便番号を含まない住所（都道府県・市区町村・丁目・番地・号）を空白を含めず記録します。（例：東京都千代田区九段北4丁目1番20号）",
+          "type": "string",
+          "maxLength": 80
+        },
+        "address2": {
+          "id": "PN-22",
+          "description": "Address 2 of person. It should be type of Apartment name, Room number, Name of person, etc. e.g. '○○マンション101号室○○様'",
+          "$comment": "住所１に付帯するアパート名、マンション名、部屋番号、○○様方などを記録します。",
+          "type": "string",
+          "maxLength": 80
+        },
+        "phoneNumber1": {
+          "id": "PN-23",
+          "description": "Phone number 1 of person. Outside area code should use '-' or '()'.",
+          "$comment": "主な連絡先電話番号を記録します。市外局番等は、レセ電に準じて半角の「-」「()」を用いて記録します。（ 例 03-1234-5678又は(03)1234-5678）",
+          "$ref": "#/definitions/TEL"
+        },
+        "phoneNumber2": {
+          "id": "PN-24",
+          "description": "Phone number 2 of person. Outside area code should use '-' or '()'.",
+          "$comment": "主な連絡先以外の電話番号を記録します。市外局番等は、レセ電に準じて半角の「-」「()」を用いて記録します。（ 例 03-1234-5678又は(03)1234-5678）",
+          "$ref": "#/definitions/TEL"
+        },
+        "occupation": {
+          "id": "PN-25",
+          "description": "Occupation of person.",
+          "$comment": "職業を自由記載で記録します。",
+          "type": "string",
+          "maxLength": 80
+        },
+        "extensions": {
+          "description": "Extensions of person information.",
+          "$comment": "個人識別情報レコードの拡張要素です。必要に応じて定義してください。",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/definitions/Extension"
+          }
+        }
+      },
+      "type": "object",
+      "required": ["recordId", "innerId", "examinationDate", "name", "sex", "birthday"],
+      "additionalProperties": false
+    },
+    "InputType": {
+      "id": "NS",
+      "description": "Input type information of Oral Examination Information Standard Code.",
+      "$comment": "入力種別を記録します。",
+      "properties": {
+        "recordId": {
+          "id": "NS-1",
+          "description": "Id of record information.",
+          "$comment": "入力種別レコードを表す識別情報「NS」を記録します。",
+          "type": "string",
+          "const": "NS"
+        },
+        "type": {
+          "id": "NS-2",
+          "description": "Input type.",
+          "$comment": "該当する入力種別を記録します。",
+          "oneOf": [
+            {
+              "const": "00",
+              "description": "None",
+              "$comment": "該当なし"
+            },
+            {
+              "const": "01",
+              "description": "First visit",
+              "$comment": "初診時口腔診査"
+            },
+            {
+              "const": "02",
+              "description": "Care history",
+              "$comment": "治療による更新（処置履歴）"
+            },
+            {
+              "const": "03",
+              "description": "Pregnant",
+              "$comment": "E01.妊産婦歯科健康診査（母子健康手帳省令様式）"
+            },
+            {
+              "const": "04",
+              "description": "1 age",
+              "$comment": "E02.１歳児歯科健康診査（母子健康手帳省令様式）"
+            },
+            {
+              "const": "05",
+              "description": "1.5 age",
+              "$comment": "E03.１歳６か月児歯科健康診査（母子健康手帳省令様式）"
+            },
+            {
+              "const": "06",
+              "description": "2 age",
+              "$comment": "E04.２歳児歯科健康診査（母子健康手帳省令様式）"
+            },
+            {
+              "const": "07",
+              "description": "3 age",
+              "$comment": "E05.３歳児歯科健康診査（母子健康手帳省令様式）"
+            },
+            {
+              "const": "08",
+              "description": "4 age",
+              "$comment": "E06.４歳児歯科健康診査（母子健康手帳省令様式）"
+            },
+            {
+              "const": "09",
+              "description": "5 age",
+              "$comment": "E07.５歳児歯科健康診査（母子健康手帳省令様式）"
+            },
+            {
+              "const": "10",
+              "description": "6 age",
+              "$comment": "E08.６歳児歯科健康診査（母子健康手帳省令様式）"
+            },
+            {
+              "const": "11",
+              "description": "Enter school",
+              "$comment": "E09.就学時健康診断"
+            },
+            {
+              "const": "12",
+              "description": "School",
+              "$comment": "E10.学校歯科健康診断"
+            },
+            {
+              "const": "15",
+              "description": "Erosion",
+              "$comment": "E13.歯科特殊健康診査（歯の酸蝕症）"
+            },
+            {
+              "const": "16",
+              "description": "Human dock",
+              "$comment": "E14.歯科人間ドック検査"
+            },
+            {
+              "const": "17",
+              "description": "Regular",
+              "$comment": "E15.かかりつけ連携手帳"
+            },
+            {
+              "const": "18",
+              "description": "WHO adult",
+              "$comment": "E16.WHO口腔健康診査 成人用"
+            },
+            {
+              "const": "19",
+              "description": "WHO child",
+              "$comment": "E17.ＷＨＯ口腔健康診査 小児用"
+            },
+            {
+              "const": "20",
+              "description": "Interpol ante mortem",
+              "$comment": "E18.INTERPOL DVI Form（Ante Mortem）"
+            },
+            {
+              "const": "21",
+              "description": "Interpol post mortem",
+              "$comment": "E19.INTERPOL DVI Form（Post Mortem）"
+            },
+            {
+              "const": "22",
+              "description": "Diabetes",
+              "$comment": "E20.糖尿病連携手帳（歯科）"
+            },
+            {
+              "const": "23",
+              "description": "Periodontal disease",
+              "$comment": "E21. 歯周疾患検診"
+            },
+            {
+              "const": "24",
+              "description": "Elderly",
+              "$comment": "E22. 後期高齢者歯科口腔健康診査"
+            },
+            {
+              "const": "25",
+              "description": "Adult",
+              "$comment": "E23. 新しい成人歯科健康診査（生活歯援プログラム）"
+            },
+            {
+              "const": "90",
+              "description": "Dental information registration sheet (from dental clinic)",
+              "$comment": "歯科情報登録シート（歯科医院からのデータ提供）"
+            },
+            {
+              "const": "91",
+              "description": "Dental information registration sheet (body information)",
+              "$comment": "歯科情報登録シート（遺体情報）"
+            },
+            {
+              "const": "92",
+              "description": "Dental chart (antemortem record)",
+              "$comment": "デンタルチャート（生前記録）"
+            },
+            {
+              "const": "93",
+              "description": "Dental chart (postmortem record)",
+              "$comment": "デンタルチャート（死後記録）"
+            }
+          ]
+        },
+        "firstVisitDate": {
+          "id": "NS-3",
+          "description": "Date of first visit.",
+          "$comment": "入力種別〔NS-2〕が初診時口腔診査01、治療による更新（処置履歴）02の場合（診療データの場合）に、最新初診年月日を記録します。",
+          "$ref": "#/definitions/Date"
+        },
+        "lastVisitDate": {
+          "id": "NS-4",
+          "description": "Date of last visit.",
+          "$comment": "入力種別〔NS-2〕が初診時口腔診査01、治療による更新（処置履歴）02の場合（診療データの場合）に、最終診療年月日を記録します。",
+          "$ref": "#/definitions/Date"
+        },
+        "extensions": {
+          "description": "Extensions of input type information.",
+          "$comment": "入力種別レコードの拡張要素です。必要に応じて定義してください。",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/definitions/Extension"
+          }
+        }
+      },
+      "type": "object",
+      "required": ["recordId", "type"],
+      "additionalProperties": false
+    },
+    "ToothPosition": {
+      "id": "TB",
+      "description": "Tooth position information of Oral Examination Information Standard Code.",
+      "$comment": "歯の部位を記録します。",
+      "properties": {
+        "recordId": {
+          "id": "TB-1",
+          "description": "Id of record information.",
+          "$comment": "部位レコードを表す識別情報「TB」を記録します。",
+          "type": "string",
+          "const": "TB"
+        },
+        "type": {
+          "id": "TB-2",
+          "description": "Type of tooth.",
+          "$comment": "歯式マスターの歯種コード（レセ電手引き別表15）4桁を記録します。",
+          "oneOf": [
+            {
+              "const": "1011",
+              "description": "",
+              "$comment": "右側上顎中切歯"
+            },
+            {
+              "const": "1012",
+              "description": "",
+              "$comment": "右側上顎側切歯"
+            },
+            {
+              "const": "1013",
+              "description": "",
+              "$comment": "右側上顎犬歯"
+            },
+            {
+              "const": "1014",
+              "description": "",
+              "$comment": "右側上顎第１小臼歯"
+            },
+            {
+              "const": "1015",
+              "description": "",
+              "$comment": "右側上顎第２小臼歯"
+            },
+            {
+              "const": "1016",
+              "description": "",
+              "$comment": "右側上顎第１大臼歯"
+            },
+            {
+              "const": "1017",
+              "description": "",
+              "$comment": "右側上顎第２大臼歯"
+            },
+            {
+              "const": "1018",
+              "description": "",
+              "$comment": "右側上顎第３大臼歯"
+            },
+            {
+              "const": "1021",
+              "description": "",
+              "$comment": "左側上顎中切歯"
+            },
+            {
+              "const": "1022",
+              "description": "",
+              "$comment": "左側上顎側切歯"
+            },
+            {
+              "const": "1023",
+              "description": "",
+              "$comment": "左側上顎犬歯"
+            },
+            {
+              "const": "1024",
+              "description": "",
+              "$comment": "左側上顎第１小臼歯"
+            },
+            {
+              "const": "1025",
+              "description": "",
+              "$comment": "左側上顎第２小臼歯"
+            },
+            {
+              "const": "1026",
+              "description": "",
+              "$comment": "左側上顎第１大臼歯"
+            },
+            {
+              "const": "1027",
+              "description": "",
+              "$comment": "左側上顎第２大臼歯"
+            },
+            {
+              "const": "1028",
+              "description": "",
+              "$comment": "左側上顎第３大臼歯"
+            },
+            {
+              "const": "1031",
+              "description": "",
+              "$comment": "左側下顎中切歯"
+            },
+            {
+              "const": "1032",
+              "description": "",
+              "$comment": "左側下顎側切歯"
+            },
+            {
+              "const": "1033",
+              "description": "",
+              "$comment": "左側下顎犬歯"
+            },
+            {
+              "const": "1034",
+              "description": "",
+              "$comment": "左側下顎第１小臼歯"
+            },
+            {
+              "const": "1035",
+              "description": "",
+              "$comment": "左側下顎第２小臼歯"
+            },
+            {
+              "const": "1036",
+              "description": "",
+              "$comment": "左側下顎第１大臼歯"
+            },
+            {
+              "const": "1037",
+              "description": "",
+              "$comment": "左側下顎第２大臼歯"
+            },
+            {
+              "const": "1038",
+              "description": "",
+              "$comment": "左側下顎第３大臼歯"
+            }
+          ]
+        }
+      },
+      "type": "object",
+      "required": ["recordId", "type"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["recordId"],
+  "oneOf": [
+    {
+      "$ref": "#/definitions/Version"
+    },
+    {
+      "$ref": "#/definitions/Organization"
+    },
+    {
+      "$ref": "#/definitions/Person"
+    },
+    {
+      "$ref": "#/definitions/InputType"
+    },
+    {
+      "$ref": "#/definitions/ToothPosition"
+    }
+  ]
+}

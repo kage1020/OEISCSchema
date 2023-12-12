@@ -1,0 +1,14 @@
+{
+  "recordId": "ON",
+  "destinationType": "01",
+  "destinationPrefectureCode": "01",
+  "destinationName": "to",
+  "destinationCode": "0123456789",
+  "inputOrganizationType": "02",
+  "inputPrefectureCode": "01",
+  "inputName": "from",
+  "inputCode": "0123456789",
+  "inputTEL": "(01)1234-5678",
+  "departmentCode": "90",
+  "departmentName": "部署名"
+}

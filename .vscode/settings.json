@@ -1,0 +1,46 @@
+{
+    "json.schemas": [
+        {
+            "url": "./oral.schema.json",
+            "fileMatch": [
+                "*.oral.json"
+            ]
+        }
+    ],
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
+    },
+    "cSpell.words": [
+        "Aichi",
+        "Aomori",
+        "Chome",
+        "Ehime",
+        "Fukui",
+        "Fukushima",
+        "Gunma",
+        "Hepato",
+        "Hepatology",
+        "Hyogo",
+        "Ibaraki",
+        "Ishikawa",
+        "Iwate",
+        "JDAOES",
+        "Kagawa",
+        "Kanagawa",
+        "Miyagi",
+        "Miyazaki",
+        "NICU",
+        "Oita",
+        "Pancreatology",
+        "Saitama",
+        "Shiga",
+        "Shimane",
+        "Tochigi",
+        "Tokushima",
+        "Tottori",
+        "Yamaguchi",
+        "Yamanashi"
+    ]
+}
